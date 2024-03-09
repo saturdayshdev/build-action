@@ -14,7 +14,7 @@ on:
     branches: [main, develop]
 
 env:
-  IMAGE_BASE: ${{ github.repository_owner }}/${{ github.event.repository.name }}
+  IMAGE_NAME: ${{ github.event.repository.name }}
   IMAGE_TAG: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
   IMAGE_PATH: docker/${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
 
