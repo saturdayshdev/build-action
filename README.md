@@ -4,7 +4,7 @@ GitHub Action for building and publishing Docker images to [GitHub Packages](htt
 
 ### Usage
 
-To use this action, simply create a workflow in .github/workflows and use it:
+To use this action, simply create a workflow in `.github/workflows` and use it:
 
 ```yaml
 name: Build
