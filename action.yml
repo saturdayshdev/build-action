@@ -38,5 +38,3 @@ runs:
         file: ${{ inputs.dockerfile }}
         tags: ghcr.io/saturdayshdev/${{ inputs.image }}:${{ inputs.tag }}
         push: true
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
