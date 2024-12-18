@@ -32,6 +32,7 @@ runs:
         password: ${{ inputs.github-token }}
 
     - name: Create .npmrc
+      shell: bash
       run: |
         echo "registry=https://registry.npmjs.org" > .npmrc
         echo "@saturdayshdev:registry=https://npm.pkg.github.com" >> .npmrc
