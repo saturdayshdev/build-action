@@ -44,6 +44,8 @@ runs:
     - name: Build & Publish
       uses: docker/build-push-action@v5
       with:
+        secret-files: |
+          npmrc=.npmrc
         context: .
         file: ${{ inputs.dockerfile }}
         tags: ghcr.io/saturdayshdev/${{ inputs.image }}:${{ inputs.tag }}
