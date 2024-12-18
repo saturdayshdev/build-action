@@ -31,6 +31,12 @@ runs:
         username: saturdayshdev
         password: ${{ inputs.github-token }}
 
+    - name: Create .npmrc
+      run: |
+        echo "registry=https://registry.npmjs.org" > .npmrc
+        echo "@saturdayshdev:registry=https://npm.pkg.github.com" >> .npmrc
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+
     - name: Setup Buildx
       uses: docker/setup-buildx-action@v3
 
