@@ -18,6 +18,11 @@ inputs:
     description: The tag to apply to the built image.
     required: true
 
+  project-dir:
+    description: Path to the project directory. Defaults to repository root.
+    required: false
+    default: "."
+
 runs:
   using: composite
   steps:
@@ -34,6 +39,7 @@ runs:
     - name: Create .npmrc
       shell: bash
       run: |
+        cd ${{ inputs.project-dir }}
         echo "registry=https://registry.npmjs.org" > .npmrc
         echo "@saturdayshdev:registry=https://npm.pkg.github.com" >> .npmrc
         echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" >> .npmrc
@@ -45,9 +51,9 @@ runs:
       uses: docker/build-push-action@v5
       with:
         secret-files: |
-          npmrc=.npmrc
-        context: .
-        file: ${{ inputs.dockerfile }}
+          npmrc=${{ inputs.project-dir }}/.npmrc
+        context: ${{ inputs.project-dir }}
+        file: ${{ inputs.project-dir }}/${{ inputs.dockerfile }}
         tags: ghcr.io/saturdayshdev/${{ inputs.image }}:${{ inputs.tag }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
