@@ -6,6 +6,10 @@ inputs:
     description: Used for publishing to GitHub Packages.
     required: true
 
+  org:
+    description: Organization to publish the image under.
+    required: true
+
   dockerfile:
     description: Path to the Dockerfile.
     required: true
@@ -54,7 +58,7 @@ runs:
           npmrc=${{ inputs.project-dir }}/.npmrc
         context: ${{ inputs.project-dir }}
         file: ${{ inputs.project-dir }}/${{ inputs.dockerfile }}
-        tags: ghcr.io/saturdayshdev/${{ inputs.image }}:${{ inputs.tag }}
+        tags: ghcr.io/${{ inputs.org }}/${{ inputs.image }}:${{ inputs.tag }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
         push: true
